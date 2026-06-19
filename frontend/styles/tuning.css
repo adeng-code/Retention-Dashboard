@@ -1,0 +1,47 @@
+/* ── TUNING VIEW ── */
+  .tuning-hero { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); color: white; padding: 48px 40px 40px; }
+  @media(max-width:900px){ .tuning-hero { padding: 32px 20px; } }
+  .tuning-hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .tuning-hero p { color: #a5b4fc; font-size: 15px; max-width: 600px; line-height: 1.6; }
+
+  .tuning-body { padding: 32px 40px; }
+  @media(max-width:900px){ .tuning-body { padding: 24px 20px; } }
+
+  .school-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .school-tab { padding: 10px 20px; border-radius: 8px; border: 2px solid #e2e8f0; background: white; font-size: 14px; font-weight: 600; color: var(--slate); cursor: pointer; transition: all .15s; }
+  .school-tab:hover { border-color: var(--purple); color: var(--purple); }
+  .school-tab.active { border-color: var(--purple); background: var(--purple); color: white; }
+
+  .school-panel { display: none; }
+  .school-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:900px){ .school-panel.active { grid-template-columns: 1fr; } }
+
+  .school-blurb { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; }
+  .school-blurb h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .school-blurb .tag { display: inline-block; background: #ede9fe; color: #7c3aed; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 99px; margin-bottom: 14px; }
+  .school-blurb p { font-size: 14px; color: var(--slate); line-height: 1.6; }
+
+  .weights-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; }
+  .weights-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+  .weight-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .weight-label { font-size: 13px; color: var(--navy); width: 170px; flex-shrink: 0; }
+  .weight-bar-bg { flex: 1; height: 10px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+  .weight-bar-fill { height: 100%; border-radius: 99px; transition: width .6s; }
+  .weight-value { font-size: 12px; color: var(--slate); width: 36px; text-align: right; font-weight: 600; }
+  .weight-off { font-size: 12px; color: #94a3b8; font-style: italic; }
+
+  .probe-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; grid-column: 1 / -1; }
+  .probe-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .probe-desc { font-size: 13px; color: var(--slate); margin-bottom: 20px; }
+  .probe-schools { display: flex; gap: 16px; flex-wrap: wrap; }
+  .probe-school { flex: 1; min-width: 180px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; padding: 16px; }
+  .probe-school-name { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .probe-score-bar { height: 12px; border-radius: 99px; margin-bottom: 8px; transition: width .6s; }
+  .probe-score-label { font-size: 20px; font-weight: 800; }
+  .probe-tier { font-size: 12px; font-weight: 600; margin-top: 4px; }
+  .probe-detail { font-size: 12px; color: var(--slate); margin-top: 8px; line-height: 1.5; }
+
+  /* util */
+  .show-all-btn { display: block; width: 100%; text-align: center; padding: 10px; font-size: 13px; font-weight: 600; color: var(--blue); background: #f8fafc; border: none; border-top: 1px solid #f1f5f9; cursor: pointer; border-radius: 0 0 12px 12px; }
+  .show-all-btn:hover { background: #eff6ff; }
+  .empty { text-align: center; padding: 40px; color: var(--slate); font-size: 14px; }
