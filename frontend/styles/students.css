@@ -1,0 +1,50 @@
+/* ── STUDENTS VIEW ── */
+  .students-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 24px 40px; }
+  @media(max-width:700px){ .students-header { padding: 14px 12px; } }
+  .students-header h2 { font-size: 20px; font-weight: 700; margin-bottom: 14px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-select { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; font-size: 13px; color: var(--navy); background: white; cursor: pointer; outline: none; flex: 1; min-width: 120px; }
+  .filter-select:focus { border-color: var(--blue); }
+  .search-input { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px 8px 36px; font-size: 13px; color: var(--navy); background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center; outline: none; width: 100%; }
+  .search-input:focus { border-color: var(--blue); }
+
+  .students-table-wrap { padding: 24px 40px; }
+  @media(max-width:700px){ .students-table-wrap { padding: 12px 12px; } }
+  .students-count { font-size: 13px; color: var(--slate); margin-bottom: 12px; }
+
+  /* Table — desktop only */
+  .table-wrap { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cards-wrap { display: none; }
+  @media(max-width:700px) {
+    .table-wrap { display: none; }
+    .cards-wrap { display: flex; flex-direction: column; gap: 10px; }
+  }
+
+  table { width: 100%; background: white; border-radius: 12px; border: 1px solid #e2e8f0; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+  thead th { background: #f8fafc; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--slate); text-transform: uppercase; letter-spacing: .4px; border-bottom: 1px solid #e2e8f0; cursor: pointer; user-select: none; white-space: nowrap; }
+  thead th:hover { background: #f1f5f9; }
+  thead th .sort-icon { margin-left: 4px; opacity: .4; }
+  thead th.sorted .sort-icon { opacity: 1; }
+  tbody tr { cursor: pointer; transition: background .1s; }
+  tbody tr:hover { background: #f8fafc; }
+  tbody td { padding: 13px 16px; font-size: 13px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  .score-bar { display: flex; align-items: center; gap: 8px; }
+  .score-track { width: 60px; height: 6px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 99px; }
+  .score-fill.high { background: var(--high); }
+  .score-fill.watch { background: var(--watch); }
+  .score-fill.on_track { background: var(--ok); }
+
+  /* Mobile student cards */
+  .student-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 14px 16px; cursor: pointer; transition: box-shadow .15s; }
+  .student-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .student-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .student-card-info { flex: 1; min-width: 0; }
+  .student-card-name { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .student-card-sub { font-size: 12px; color: var(--slate); margin-top: 2px; }
+  .student-card-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .student-card-stat { background: #f8fafc; border-radius: 8px; padding: 8px 10px; }
+  .student-card-stat-label { font-size: 10px; color: var(--slate); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 2px; }
+  .student-card-stat-value { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .student-card-driver { font-size: 12px; color: var(--slate); background: #f8fafc; border-radius: 8px; padding: 8px 10px; line-height: 1.4; }

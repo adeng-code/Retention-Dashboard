@@ -1,0 +1,47 @@
+[
+  {
+    "id": "highbar",
+    "name": "Highbar University",
+    "tag": "Grade-compressed elite",
+    "description": "At Highbar, grade inflation means a 3.0 GPA is not a distress signal — nearly everyone earns above a 3.0. The model learns this and down-weights GPA accordingly. Instead, LMS disengagement and gateway course failure are the dominant predictors here.",
+    "weights": [
+      { "label": "LMS disengagement",    "value": 1.6, "pct": 90,  "color": "#8b5cf6" },
+      { "label": "Failed gateway course", "value": 1.8, "pct": 100, "color": "#8b5cf6" },
+      { "label": "Course drops",          "value": 1.1, "pct": 61,  "color": "#8b5cf6" },
+      { "label": "Credits behind",        "value": 1.0, "pct": 56,  "color": "#8b5cf6" },
+      { "label": "Low midterm GPA",       "value": 0.4, "pct": 22,  "color": "#8b5cf6" },
+      { "label": "Low cumulative GPA",    "value": 0.3, "pct": 17,  "color": "#8b5cf6", "note": "↓" },
+      { "label": "Late submissions",      "value": 0.6, "pct": 33,  "color": "#8b5cf6" }
+    ]
+  },
+  {
+    "id": "openwood",
+    "name": "Openwood College",
+    "tag": "Open / shopping curriculum",
+    "description": "Openwood encourages students to drop classes and explore. Course-dropping is a feature of the academic culture, not a distress signal. The model suppresses drops entirely — otherwise it might falsely flag exploratory students or even treat drops as protective.",
+    "weights": [
+      { "label": "LMS disengagement",    "value": 1.5, "pct": 83,  "color": "#7c3aed" },
+      { "label": "Failed gateway course", "value": 1.4, "pct": 78,  "color": "#7c3aed" },
+      { "label": "Low midterm GPA",       "value": 1.3, "pct": 72,  "color": "#7c3aed" },
+      { "label": "Low cumulative GPA",    "value": 1.2, "pct": 67,  "color": "#7c3aed" },
+      { "label": "Late submissions",      "value": 0.9, "pct": 50,  "color": "#7c3aed" },
+      { "label": "Credits behind",        "value": 0.8, "pct": 44,  "color": "#7c3aed" },
+      { "label": "Course drops",          "value": 0.0, "pct": 0,   "color": "#7c3aed", "note": "OFF — house rule" }
+    ]
+  },
+  {
+    "id": "statetech",
+    "name": "State Tech",
+    "tag": "Large public institution",
+    "description": "At State Tech, time-to-degree is tightly linked to financial aid eligibility. Credits behind is the strongest predictor of dropout — a student who falls behind risks losing funding. All other signals carry their conventional weights here.",
+    "weights": [
+      { "label": "Credits behind",        "value": 1.6, "pct": 100, "color": "#2563eb", "note": "↑" },
+      { "label": "Failed gateway course", "value": 1.5, "pct": 94,  "color": "#2563eb" },
+      { "label": "Low cumulative GPA",    "value": 1.3, "pct": 81,  "color": "#2563eb" },
+      { "label": "LMS disengagement",    "value": 1.2, "pct": 75,  "color": "#2563eb" },
+      { "label": "Low midterm GPA",       "value": 1.1, "pct": 69,  "color": "#2563eb" },
+      { "label": "Course drops",          "value": 1.0, "pct": 63,  "color": "#2563eb" },
+      { "label": "Late submissions",      "value": 0.7, "pct": 44,  "color": "#2563eb" }
+    ]
+  }
+]

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetainIQ — Academic Risk & Retention Dashboard</title>
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/nav_views.css">
+<link rel="stylesheet" href="styles/dashboard.css">
+<link rel="stylesheet" href="styles/students.css">
+<link rel="stylesheet" href="styles/panel.css">
+<link rel="stylesheet" href="styles/tuning.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Retain<span>IQ</span></div>
+  <button class="nav-tab active" data-view="dashboard" onclick="showView('dashboard')">Dashboard</button>
+  <button class="nav-tab" data-view="students" onclick="showView('students')">Students <span class="nav-badge" id="high-count-badge">—</span></button>
+  <button class="nav-tab" data-view="tuning" onclick="showView('tuning')">How It Works</button>
+</nav>
+
+<!-- DASHBOARD -->
+<div class="view active" id="view-dashboard">
+  <div class="dash-hero">
+    <h1>Spring 2025 Cohort Overview</h1>
+    <p id="hero-sub"></p>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Total Students</div><div class="kpi-value blue" id="kpi-total">—</div><div class="kpi-sub">active this term</div></div>
+      <div class="kpi"><div class="kpi-label">High Risk</div><div class="kpi-value red" id="kpi-high">—</div><div class="kpi-sub">need immediate action</div></div>
+      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-value amber" id="kpi-watch">—</div><div class="kpi-sub">monitor closely</div></div>
+      <div class="kpi"><div class="kpi-label">On Track</div><div class="kpi-value green" id="kpi-ok">—</div><div class="kpi-sub">no action needed</div></div>
+      <div class="kpi"><div class="kpi-label">Model Recall</div><div class="kpi-value blue" id="kpi-recall">—</div><div class="kpi-sub">of at-risk students flagged</div></div>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Risk Distribution</div><div class="card-sub">Cohort breakdown by tier</div></div></div>
+      <div class="card-body">
+        <div class="risk-bar-wrap">
+          <div class="risk-bar-track" id="risk-bar"></div>
+          <div class="risk-legend">
+            <div class="risk-legend-item"><div class="risk-dot" style="background:var(--high)"></div>High Risk</div>
+            <div class="risk-legend-item"><div class="risk-dot" style="background:var(--watch)"></div>Watch</div>
+            <div class="risk-legend-item"><div class="risk-dot" style="background:var(--ok)"></div>On Track</div>
+          </div>
+        </div>
+        <div style="margin-top:20px" id="major-breakdown"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div><div class="card-title">Model Accuracy</div><div class="card-sub">Backtested on this cohort's outcomes</div></div></div>
+      <div class="card-body">
+        <div class="recall-wrap">
+          <div class="recall-circle">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#f1f5f9" stroke-width="12"/>
+              <circle id="recall-arc" cx="60" cy="60" r="52" fill="none" stroke="#3b82f6" stroke-width="12"
+                stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round" style="transform:rotate(-90deg);transform-origin:60px 60px"/>
+            </svg>
+            <div class="recall-circle-label"><div class="recall-pct" id="recall-pct-label">—</div><div class="recall-pct-sub">recall</div></div>
+          </div>
+          <div class="recall-desc" id="recall-desc"></div>
+        </div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f8fafc;border-radius:8px">
+            <div style="font-size:13px;color:var(--navy)">Students with poor outcomes</div>
+            <div style="font-size:16px;font-weight:700" id="stat-poor">—</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fef2f2;border-radius:8px">
+            <div style="font-size:13px;color:var(--navy)">Correctly flagged (high or watch)</div>
+            <div style="font-size:16px;font-weight:700;color:var(--high)" id="stat-flagged">—</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#ecfdf5;border-radius:8px">
+            <div style="font-size:13px;color:var(--navy)">Missed (false negatives)</div>
+            <div style="font-size:16px;font-weight:700;color:#059669" id="stat-missed">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="grid-column:1 / -1">
+      <div class="card-header"><div><div class="card-title">Students Needing Attention</div><div class="card-sub">High-risk and top watch students — click any row for details</div></div></div>
+      <div class="card-body" style="padding-bottom:0" id="top-students-list"></div>
+      <button class="show-all-btn" onclick="showView('students')">View all students →</button>
+    </div>
+  </div>
+</div>
+
+<!-- STUDENTS -->
+<div class="view" id="view-students">
+  <div class="students-header">
+    <h2>Student Roster</h2>
+    <div class="filters">
+      <input class="search-input" id="search" type="text" placeholder="Search by name or ID…" oninput="renderTable()">
+      <select class="filter-select" id="filter-tier" onchange="renderTable()">
+        <option value="">All tiers</option>
+        <option value="high">High risk</option>
+        <option value="watch">Watch</option>
+        <option value="on_track">On track</option>
+      </select>
+      <select class="filter-select" id="filter-year" onchange="renderTable()">
+        <option value="">All years</option>
+        <option>Freshman</option>
+        <option>Sophomore</option>
+        <option>Junior</option>
+        <option>Senior</option>
+      </select>
+      <select class="filter-select" id="filter-major" onchange="renderTable()">
+        <option value="">All majors</option>
+      </select>
+    </div>
+  </div>
+  <div class="students-table-wrap">
+    <div class="students-count" id="students-count"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortBy('name')">Name <span class="sort-icon">↕</span></th>
+            <th onclick="sortBy('major')">Major <span class="sort-icon">↕</span></th>
+            <th onclick="sortBy('year')">Year <span class="sort-icon">↕</span></th>
+            <th onclick="sortBy('gpa')">GPA <span class="sort-icon">↕</span></th>
+            <th onclick="sortBy('risk_score')">Risk Score <span class="sort-icon">↕</span></th>
+            <th onclick="sortBy('risk_tier')">Tier <span class="sort-icon">↕</span></th>
+            <th>Top Driver</th>
+          </tr>
+        </thead>
+        <tbody id="student-tbody"></tbody>
+      </table>
+    </div>
+    <div class="cards-wrap" id="student-cards"></div>
+  </div>
+</div>
+
+<!-- TUNING -->
+<div class="view" id="view-tuning">
+  <div class="tuning-hero">
+    <h1>Per-Institution Model Tuning</h1>
+    <p>The same student profile can be high-risk at one school and on-track at another. RetainIQ learns from each institution's own historical outcomes — so the signals that matter at your school are the ones that drive your model.</p>
+  </div>
+  <div class="tuning-body">
+    <div class="school-tabs" id="school-tabs"></div>
+    <div id="school-panels"></div>
+
+    <!-- Same student, different verdicts (static) -->
+    <div class="probe-card">
+      <h3>Same Student Profile — Three Different Verdicts</h3>
+      <p class="probe-desc">A student with a low GPA and 2 course drops. Watch what happens when you run this profile through each school's model.</p>
+      <div class="probe-schools">
+        <div class="probe-school">
+          <div class="probe-school-name">Highbar University</div>
+          <div class="probe-score-bar" style="width:22%;background:#10b981"></div>
+          <div class="probe-score-label" style="color:#10b981">Low Risk</div>
+          <div class="probe-tier" style="color:#10b981">On Track</div>
+          <div class="probe-detail">Low GPA barely matters here. Course drops are noted but not alarming. No intervention triggered.</div>
+        </div>
+        <div class="probe-school">
+          <div class="probe-school-name">Openwood College</div>
+          <div class="probe-score-bar" style="width:40%;background:#f59e0b"></div>
+          <div class="probe-score-label" style="color:#d97706">Moderate</div>
+          <div class="probe-tier" style="color:#d97706">Watch</div>
+          <div class="probe-detail">Low GPA matters here. But course drops are <em>suppressed entirely</em> — ignored by the model per house rule.</div>
+        </div>
+        <div class="probe-school">
+          <div class="probe-school-name">State Tech</div>
+          <div class="probe-score-bar" style="width:72%;background:#ef4444"></div>
+          <div class="probe-score-label" style="color:#ef4444">High Risk</div>
+          <div class="probe-tier" style="color:#ef4444">Escalate</div>
+          <div class="probe-detail">Both signals carry significant weight. Advisor notified immediately. Credit-recovery plan recommended.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="overlay" id="overlay"></div>
+<div class="panel" id="panel">
+  <div class="panel-header" id="panel-header"></div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

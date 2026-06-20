@@ -1,0 +1,13 @@
+/* NAV */
+  nav { background: var(--navy); padding: 0 16px; display: flex; align-items: center; height: 56px; gap: 4px; position: sticky; top: 0; z-index: 100; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-brand { color: white; font-size: 16px; font-weight: 700; letter-spacing: -0.5px; margin-right: 16px; flex-shrink: 0; }
+  .nav-brand span { color: #60a5fa; }
+  .nav-tab { color: #94a3b8; font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 6px; cursor: pointer; transition: all .15s; border: none; background: none; white-space: nowrap; flex-shrink: 0; }
+  .nav-tab:hover { color: white; background: var(--navy2); }
+  .nav-tab.active { color: white; background: var(--navy3); }
+  .nav-badge { background: var(--high); color: white; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 99px; margin-left: 4px; }
+
+  /* VIEWS */
+  .view { display: none; }
+  .view.active { display: block; }
