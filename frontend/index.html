@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RetainIQ — Academic Risk & Retention Dashboard</title>
+<title>Luminary — Student Success</title>
 <link rel="stylesheet" href="styles/base.css">
 <link rel="stylesheet" href="styles/nav_views.css">
 <link rel="stylesheet" href="styles/dashboard.css">
@@ -14,7 +14,16 @@
 <body>
 
 <nav>
-  <div class="nav-brand">Retain<span>IQ</span></div>
+  <div class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <polygon points="11,1 21,11 11,21 1,11" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+      <polygon points="11,5 17,11 11,17 5,11" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Luminary</span>
+      <span class="nav-brand-tagline">STUDENT SUCCESS</span>
+    </div>
+  </div>
   <button class="nav-tab active" data-view="dashboard" onclick="showView('dashboard')">Dashboard</button>
   <button class="nav-tab" data-view="students" onclick="showView('students')">Students <span class="nav-badge" id="high-count-badge">—</span></button>
   <button class="nav-tab" data-view="tuning" onclick="showView('tuning')">How It Works</button>
